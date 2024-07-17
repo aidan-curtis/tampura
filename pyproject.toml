@@ -1,0 +1,40 @@
+[tool.black]
+line-length = 99
+target-version = ["py38"]
+# 'extend-exclude' excludes files or directories in addition to the defaults
+extend-exclude = """
+# A regex preceded with ^/ will apply only to files and directories
+# in the root of the project.
+(
+  tampura/third_party
+)
+"""
+
+
+[tool.isort]
+py_version = 38
+profile = "black"
+multi_line_output = 2
+skip_glob = ["venv/*", "tampura/third_party/*"]
+split_on_trailing_comma = true
+
+
+[tool.mypy]
+strict_equality = true
+disallow_untyped_calls = true
+warn_unreachable = true
+exclude = ["venv/*", "tampura/third_party/*"]
+follow_imports = "skip"
+
+[[tool.mypy.overrides]]
+module = [
+    "setuptools.*",
+    "bosdyn.*",
+    "cv2.*",
+    "open3d.*",
+]
+ignore_missing_imports = true
+
+
+[tool.pytest.ini_options]
+addopts = "--ignore=tampura/third_party"
