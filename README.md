@@ -1,6 +1,10 @@
 # TAMPURA
 
-Task and motion planning with uncertainty and risk awareness.
+Partially Observable Task and motion planning with uncertainty and risk awareness.
+
+[![Paper](https://img.shields.io/badge/-Paper-F5DF4D?style=flat&logo=read-the-docs)](https://arxiv.org/abs/2403.10454)
+[![Website](https://img.shields.io/badge/-Website-7952B3?style=flat&logo=Internet-Explorer)](https://aidan-curtis.github.io/tampura.github.io/)
+
 
 ![alt text](figs/tasks.png)
 
