@@ -6,15 +6,15 @@ Task and motion planning with uncertainty and risk awareness.
 
 ## Install
 
-Make sure to pull in submodules
-```
-    git submodule update --init --recursive
-```
-
 Install the symbolic planner
 ```
     cd third_party/symk
     python build.py
+```
+
+Install the tampura package
+```
+    python -m pip install -e .
 ```
 
 # Example Notebook
