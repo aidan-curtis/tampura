@@ -1,9 +1,6 @@
 # TAMPURA
 
-Partially Observable Task and motion planning with uncertainty and risk awareness.
-
-[![Paper](https://img.shields.io/badge/-Paper-87CEEB?style=flat&logo=read-the-docs)](https://arxiv.org/abs/2403.10454)
-[![Website](https://img.shields.io/badge/-Website-90EE90?style=flat&logo=Internet-Explorer)](https://aidan-curtis.github.io/tampura.github.io/)
+Partially Observable Task and motion planning with uncertainty and risk awareness. See our [paper](https://img.shields.io/badge/-Paper-87CEEB?style=flat&logo=read-the-docs) or [website](https://aidan-curtis.github.io/tampura.github.io/) for more details.
 
 ![alt text](figs/tasks.png)
 
