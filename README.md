@@ -1,4 +1,4 @@
-# TAMPURA environments
+# TAMPURA
 
 Task and motion planning with uncertainty and risk awareness.
 
