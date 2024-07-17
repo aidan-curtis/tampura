@@ -19,7 +19,7 @@ Install the tampura package
 
 # Example Notebook
 
-See notebooks/grasping_env.ipynb for a simple usage example.
+See `notebooks/grasping_env.ipynb` for a simple usage example.
 
 # Robot environments
 
