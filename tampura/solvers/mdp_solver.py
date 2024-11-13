@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import logging
 import math
 import warnings
 
@@ -177,7 +178,7 @@ def solve_mdp(
     R: AbstractRewardModel,
     gamma: float,
     decision_strategy: str = "prob",
-    planner: str = "lao-star",
+    planner: str = "vi",
     b0=None,
 ) -> AbstractSolution:
     assert len(R.reward.keys()) > 0 and len(F.effects.keys()) > 0
@@ -238,4 +239,6 @@ def solve_mdp(
 
         solution.value[ab] = v
 
+    logging.info(solution.policy)
+    logging.info(solution.value)
     return solution

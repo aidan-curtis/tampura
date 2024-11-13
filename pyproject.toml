@@ -1,7 +1,41 @@
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "tampura"
+version = "0.1.0"
+dependencies = [
+    "black==23.9.1",
+    "docformatter==1.7.5",
+    "isort==5.12.0",
+    "pylint>=2.14.5",
+    "pytest-pylint>=0.18.0",
+    "six",
+    "pymdptoolbox",
+    "pybullet",
+    "rtree",
+    "trimesh==3.21.7",
+    "pyyaml",
+    "pexpect",
+    "tabulate",
+    "zmq",
+    "open3d",
+    "gymnasium",
+    "stable_baselines3",
+    "tensorboard",
+]
+
+[tool.setuptools]
+include-package-data = true
+
+[tool.setuptools.packages.find]
+include = ["tampura"]
+exclude = ["figs", "notebooks", "third_party"]
+
 [tool.black]
 line-length = 99
-target-version = ["py38"]
-# 'extend-exclude' excludes files or directories in addition to the defaults
+target-version = ["py311"]
 extend-exclude = """
 # A regex preceded with ^/ will apply only to files and directories
 # in the root of the project.
@@ -10,14 +44,12 @@ extend-exclude = """
 )
 """
 
-
 [tool.isort]
-py_version = 38
+py_version = 311
 profile = "black"
 multi_line_output = 2
 skip_glob = ["venv/*", "tampura/third_party/*"]
 split_on_trailing_comma = true
-
 
 [tool.mypy]
 strict_equality = true
@@ -34,7 +66,6 @@ module = [
     "open3d.*",
 ]
 ignore_missing_imports = true
-
 
 [tool.pytest.ini_options]
 addopts = "--ignore=tampura/third_party"

@@ -14,7 +14,10 @@ Install the symbolic planner
 
 Install the tampura package
 ```
+    conda create -n tampura_env python=3.11
+    conda activate tampura_env
     python -m pip install -e .
+    conda install pygraphviz
 ```
 
 # Example Notebook
