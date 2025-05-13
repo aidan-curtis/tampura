@@ -3,7 +3,6 @@ import logging
 import os
 import sys
 import time
-from collections import defaultdict
 from typing import Any, Dict, Generic, Type, TypeVar
 
 import yaml
@@ -110,23 +109,13 @@ def create_parser():
 
     parser.add_argument(
         "--symk-direction", choices=["fw", "bw", "bd"]
-    )  # Forward, backward, bidirectional
+    )
     parser.add_argument("--symk-simple", type=bool)
     parser.add_argument("--from-scratch", type=bool)
 
     parser.add_argument(
         "--load",
         help="Location of the save folder to load from when visualizing",
-    )
-
-    parser.add_argument(
-        "--real-execute",
-        help="Execute robot actions in the real world along side the simulation",
-        type=bool,
-    )
-
-    parser.add_argument(
-        "--real-camera", help="Use realsense RGBD camera on robot for vision", type=bool
     )
     return parser
 

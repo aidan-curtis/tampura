@@ -15,7 +15,7 @@ dependencies = [
     "pymdptoolbox",
     "pybullet",
     "rtree",
-    "trimesh==3.21.7",
+    "trimesh>=4.6.8",
     "pyyaml",
     "pexpect",
     "tabulate",
