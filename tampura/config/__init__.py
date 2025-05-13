@@ -1,3 +1,2 @@
-from .config import register_env  # re-export
+from .config import *
 
-__all__ = ["register_env"]
