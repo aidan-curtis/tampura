@@ -1,1 +1,1 @@
-from . import config, policies, solvers
+from tampura import config, policies, solvers
