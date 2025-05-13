@@ -4,7 +4,7 @@ import logging
 import os
 import random
 from collections import defaultdict
-from typing import Any, Dict, Tuple
+from typing import Any, Dict, List, Tuple
 
 from tampura.policies.policy import Policy
 from tampura.solvers.mdp_solver import solve_mdp
@@ -55,16 +55,18 @@ def generate_symbolic_model(
 
 
 class TampuraPolicy(Policy):
-    def __init__(self, config: Dict[str, Any], *args, **kwargs):
+    def __init__(self, config: Dict[str, Any], *args, **kwargs) -> None:
         super(TampuraPolicy, self).__init__(config, *args, **kwargs)
         self.sampled = False
-        self.envelope = []
+        self.envelope: List[Tuple[AbstractBelief, Action]] = []
         self.F = AbstractTransitionModel(root=None)
         self.R = AbstractRewardModel()
-        self.belief_map = defaultdict(list)
+        self.belief_map: Dict[AbstractBelief, List[Belief]] = defaultdict(list)
         self.t = 0
 
-    def get_action(self, belief: Belief, store: AliasStore) -> Tuple[Action, AliasStore]:
+    def get_action(
+        self, belief: Belief, store: AliasStore
+    ) -> Tuple[Action, Dict[str, Any], AliasStore]:
         ab = belief.abstract(store)
 
         self.F.root = ab
@@ -153,7 +155,7 @@ class TampuraPolicy(Policy):
             if sol.policy[ab] in applicable_actions:
                 selected_action = sol.policy[ab]
             else:
-                logging.warn(
+                logging.warning(
                     f"WARNING: Taking a random action because {str(sol.policy[ab])} is not feasible."
                 )
                 selected_action = random.choice(applicable_actions)

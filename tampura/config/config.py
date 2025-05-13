@@ -107,9 +107,7 @@ def create_parser():
 
     parser.add_argument("--symk-selection", choices=["unordered", "top_k"])
 
-    parser.add_argument(
-        "--symk-direction", choices=["fw", "bw", "bd"]
-    )
+    parser.add_argument("--symk-direction", choices=["fw", "bw", "bd"])
     parser.add_argument("--symk-simple", type=bool)
     parser.add_argument("--from-scratch", type=bool)
 

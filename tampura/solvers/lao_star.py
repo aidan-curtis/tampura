@@ -338,16 +338,3 @@ def test_maze_with_traps():
     print("Value Iteration Policy:", vi.policy)
     print("LAO* Policy:", lao_policy)
     print()
-
-
-if __name__ == "__main__":
-    test_large_grid_world()
-    test_stochastic_wind_grid()
-    test_maze_with_traps()
-if __name__ == "__main__":
-    test_simple_mdp()
-    test_grid_world()
-    test_unreachable_states()
-    test_large_grid_world()
-    test_stochastic_wind_grid()
-    test_maze_with_traps()
