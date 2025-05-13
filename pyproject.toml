@@ -61,7 +61,6 @@ follow_imports = "skip"
 [[tool.mypy.overrides]]
 module = [
     "setuptools.*",
-    "bosdyn.*",
     "cv2.*",
     "open3d.*",
 ]
