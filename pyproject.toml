@@ -29,6 +29,9 @@ dependencies = [
 [tool.setuptools]
 include-package-data = true
 
+[tool.setuptools.package-data]
+"tampura.third_party" = ["**"]
+
 [tool.setuptools.packages.find]
 include = ["tampura*"]
 exclude = ["figs", "notebooks"]
