@@ -52,72 +52,6 @@ def get_planner(id: str):
     return planner_registry.get(id)
 
 
-def create_parser():
-    parser = argparse.ArgumentParser()
-    parser.add_argument("--config", help="The config file to load from")
-    parser.add_argument("--task", type=str),
-    parser.add_argument("--planner", type=str)
-    parser.add_argument(
-        "--global-seed", help="The global rng seed set once before planner execution", type=int
-    )
-    parser.add_argument(
-        "--vis",
-        help="A flag enabling visualization of the pybullet execution",
-        type=bool,
-    )
-    parser.add_argument(
-        "--vis-graph",
-        help="A flag enabling visualization of the learned transition graphs",
-        type=bool,
-    )
-    parser.add_argument(
-        "--print-options",
-        help="Specifies what to print at each step of execution",
-    )
-    parser.add_argument(
-        "--save-dir", help="File to load from", default="runs/run{}".format(str(time.time()))
-    )
-    parser.add_argument("--max-steps", help="Maximum number of steps allowed", type=int)
-
-    parser.add_argument(
-        "--batch-size", help="Number of samples from effect model before replanning.", type=int
-    )
-    parser.add_argument(
-        "--num-skeletons", help="Number of symbolic skeletons to extract from symk", type=int
-    )
-    parser.add_argument(
-        "--flat-sample",
-        help="Sample all continuous controller input params once at the beginning.",
-        type=bool,
-    )
-    parser.add_argument("--flat-width", help="Width when flat sampling", type=int)
-    parser.add_argument("--pwa", help="Progressive widening alpha parameter", type=float)
-    parser.add_argument("--pwk", help="Progressive widening k parameter", type=float)
-    parser.add_argument("--gamma", help="POMDP decay parameter", type=float)
-    parser.add_argument(
-        "--envelope-threshold",
-        help="Number of samples from effect model before replanning.",
-        type=float,
-    )
-    parser.add_argument("--num-samples", help="Maximum number of steps allowed", type=int)
-    parser.add_argument(
-        "--learning-strategy", choices=["bayes_optimistic", "monte_carlo", "mdp_guided", "none"]
-    )
-    parser.add_argument("--decision-strategy", choices=["prob", "wao", "ao", "mlo", "none"])
-
-    parser.add_argument("--symk-selection", choices=["unordered", "top_k"])
-
-    parser.add_argument("--symk-direction", choices=["fw", "bw", "bd"])
-    parser.add_argument("--symk-simple", type=bool)
-    parser.add_argument("--from-scratch", type=bool)
-
-    parser.add_argument(
-        "--load",
-        help="Location of the save folder to load from when visualizing",
-    )
-    return parser
-
-
 class StreamToLogger:
     def __init__(self, logger, log_level):
         self.logger = logger
@@ -142,15 +76,7 @@ def get_default_config(save_dir=None):
     return load_config(save_dir=save_dir)
 
 
-def load_config(config_file="tampura/config/default.yml", save_dir=None, with_parser=False):
-    arg_dict = {}
-
-    if with_parser:
-        parser = create_parser()
-        arg_dict = {k: v for k, v in vars(parser.parse_args()).items() if v is not None}
-    if "config" in arg_dict:
-        config_file = arg_dict["config"]
-
+def load_config(config_file="tampura/config/default.yml", arg_dict={}, save_dir=None):
     script_directory = os.path.join(
         os.path.dirname(os.path.realpath(__file__)), os.pardir, os.pardir
     )
