@@ -77,10 +77,7 @@ def get_default_config(save_dir=None):
 
 
 def load_config(config_file="tampura/config/default.yml", arg_dict={}, save_dir=None):
-    script_directory = os.path.join(
-        os.path.dirname(os.path.realpath(__file__)), os.pardir, os.pardir
-    )
-    config = config_from_file(os.path.join(script_directory, config_file))
+    config = config_from_file(config_file)
     config.update(arg_dict)
     if "save_dir" not in config or config["save_dir"] is None:
         config["save_dir"] = "runs/run{}".format(time.time())

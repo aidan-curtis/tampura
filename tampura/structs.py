@@ -6,7 +6,7 @@ import logging
 import random
 from collections import defaultdict
 from dataclasses import dataclass, field
-from typing import Any, Callable, Dict, List, Tuple, Optional
+from typing import Any, Callable, Dict, List, Optional, Tuple
 
 from tampura.store import AliasStore
 from tampura.symbolic import (
@@ -130,7 +130,7 @@ def default_effect_fn(
 
 
 def effect_from_execute_fn(
-    execute_fn: Callable[[Action, Belief, State, AliasStore], Tuple[State, Observation]]
+    execute_fn: Callable[[Action, Belief, State, AliasStore], Tuple[State, Observation]],
 ):
     """For convenience, we can simulate the effects of a controller by calling
     that controller's execute function with no state.
@@ -357,9 +357,9 @@ class NoOp(ActionSchema):
     effects: List[Any] = field(default_factory=lambda: [])
     verify_effects: List[Expr] = field(default_factory=lambda: [])
 
-    effects_fn: Callable[
-        [List[str], Belief, AliasStore], Tuple[AbstractBeliefSet, AliasStore]
-    ] = noop_effect_fn
+    effects_fn: Callable[[List[str], Belief, AliasStore], Tuple[AbstractBeliefSet, AliasStore]] = (
+        noop_effect_fn
+    )
     execute_fn: Callable[
         [List[str], Belief, State, AliasStore], Tuple[Observation, AliasStore]
     ] = noop_execute_fn

@@ -6,6 +6,8 @@ import random
 from collections import defaultdict
 from typing import Any, Dict, List, Tuple
 
+from tqdm import tqdm  # type: ignore
+
 from tampura.policies.policy import Policy
 from tampura.solvers.mdp_solver import solve_mdp
 from tampura.solvers.policy_search import normalize, policy_search
@@ -19,7 +21,6 @@ from tampura.structs import (
     AliasStore,
     Belief,
 )
-from tqdm import tqdm #type: ignore
 
 
 def generate_symbolic_model(
@@ -135,7 +136,8 @@ class TampuraPolicy(Policy):
 
                     if self.config["vis_graph"]:
                         save_file = os.path.join(
-                            self.config["save_dir"], f"logs/transition_function_t={self.t}_s={n}.png"
+                            self.config["save_dir"],
+                            f"logs/transition_function_t={self.t}_s={n}.png",
                         )
                         self.F.visualize(self.R, save_file=save_file)
 
