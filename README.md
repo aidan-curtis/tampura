@@ -8,10 +8,10 @@ Partially Observable Task and motion planning with uncertainty and risk awarenes
 
 Install the tampura package
 ```
-    conda create -n tampura_env python=3.11
-    conda activate tampura_env
-    python -m pip install -e .
-    conda install -c conda-forge pygraphviz
+conda create -n tampura_env python=3.11
+conda activate tampura_env
+python -m pip install -e .
+conda install -c conda-forge pygraphviz
 ```
 
 # Example Notebook
