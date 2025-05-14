@@ -72,11 +72,7 @@ def config_from_file(file_path) -> Dict[str, Any]:
     return config
 
 
-def get_default_config(save_dir=None):
-    return load_config(save_dir=save_dir)
-
-
-def load_config(config_file="tampura/config/default.yml", arg_dict={}, save_dir=None):
+def load_config(config_file, arg_dict={}, save_dir=None):
     config = config_from_file(config_file)
     config.update(arg_dict)
     if "save_dir" not in config or config["save_dir"] is None:

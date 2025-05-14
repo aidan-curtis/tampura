@@ -6,12 +6,6 @@ Partially Observable Task and motion planning with uncertainty and risk awarenes
 
 ## Install
 
-Install the symbolic planner
-```
-    cd third_party/symk
-    python build.py
-```
-
 Install the tampura package
 ```
     conda create -n tampura_env python=3.11
