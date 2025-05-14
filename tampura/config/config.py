@@ -72,15 +72,9 @@ def config_from_file(file_path) -> Dict[str, Any]:
     return config
 
 
-def load_config(config_file, arg_dict={}, save_dir=None):
+def load_config(config_file, arg_dict={}):
     config = config_from_file(config_file)
     config.update(arg_dict)
-    if "save_dir" not in config or config["save_dir"] is None:
-        config["save_dir"] = "runs/run{}".format(time.time())
-
-    if save_dir is not None:
-        config["save_dir"] = os.path.join(save_dir, config["save_dir"])
-
     return config
 
 
