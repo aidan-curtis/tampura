@@ -39,7 +39,6 @@ class ContingentPolicy(Policy):
 
         if len(plans) == 0 or plans is None or len(plans[0]) == 0:
             all_actions = self.problem_spec.applicable_actions(a_b, store)
-            print("All applicable actions: " + str(all_actions))
             return random.choice(all_actions), {}, store
         else:
             plan_action = plans[0][0]

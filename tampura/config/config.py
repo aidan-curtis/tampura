@@ -165,7 +165,7 @@ def load_config(config_file="tampura/config/default.yml", save_dir=None, with_pa
     return config
 
 
-def setup_logger(save_dir, log_level=logging.DEBUG):
+def setup_logger(save_dir, log_level=logging.INFO):
     logger = logging.getLogger()
 
     # Reset logger if it has any handlers

@@ -102,7 +102,6 @@ class ProblemSpec:
     def flat_stream_sample(
         self, ab: AbstractBelief, store: AliasStore, times: int = 1
     ) -> AliasStore:
-        logging.info("Flat Stream Sampling")
         if len(self.stream_schemas) == 0:
             return store
 
@@ -127,7 +126,7 @@ class ProblemSpec:
                         if input_sym not in stream_sampled_inputs[sampler.name]:
                             stream_sampled_inputs[sampler.name].append(input_sym)
                             if None not in store.get_all(input_sym):
-                                logging.info(f"Sampling {sampler}({input_sym})")
+                                logging.debug(f"Sampling {sampler}({input_sym})")
                                 output = sampler.sample_fn(input_sym, store=store)
                                 output_object = store.add_typed(output, sampler.output_type)
                                 merged_dict = {k: v for k, v in zip(sampler.inputs, input_sym)} | {

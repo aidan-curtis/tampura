@@ -239,6 +239,4 @@ def solve_mdp(
 
         solution.value[ab] = v
 
-    logging.info(solution.policy)
-    logging.info(solution.value)
     return solution

@@ -156,7 +156,6 @@ class Policy:
 
         env.wrapup()
 
-        if not self.config["real_execute"]:
-            save_run_data(history, self.config["save_dir"])
+        save_run_data(history, self.config["save_dir"])
 
         return history, store

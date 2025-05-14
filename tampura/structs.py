@@ -6,7 +6,7 @@ import logging
 import random
 from collections import defaultdict
 from dataclasses import dataclass, field
-from typing import Any, Callable, Dict, List, Tuple
+from typing import Any, Callable, Dict, List, Tuple, Optional
 
 from tampura.store import AliasStore
 from tampura.symbolic import (
@@ -167,8 +167,8 @@ class StreamSchema:
     name: str = "default"
     inputs: List[str] = field(default_factory=lambda: [])
     input_types: List[str] = field(default_factory=lambda: [])
-    output: List[str] = field(default_factory=lambda: [])
-    output_type: List[str] = field(default_factory=lambda: [])
+    output: str = ""
+    output_type: str = ""
     preconditions: List[Any] = field(default_factory=lambda: [])
     certified: List[Any] = field(default_factory=lambda: [])
     sample_fn: Callable[[List[str], AliasStore], Tuple[List[str], AliasStore]] = None
@@ -343,7 +343,7 @@ def noop_execute_fn(
     state: State,
     store: AliasStore,
     **kwargs,
-) -> Tuple[State, Observation]:
+) -> Tuple[State, Optional[Observation]]:
     return state, None
 
 

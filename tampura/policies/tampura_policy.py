@@ -19,6 +19,7 @@ from tampura.structs import (
     AliasStore,
     Belief,
 )
+from tqdm import tqdm #type: ignore
 
 
 def generate_symbolic_model(
@@ -104,6 +105,7 @@ class TampuraPolicy(Policy):
 
             self.envelope = []
 
+            logging.info("[TampuraPolicy] Flat Action Parameter Sampling")
             if not self.sampled and len(self.problem_spec.stream_schemas) > 0:
                 sample_width = 1
                 if self.config["flat_sample"]:
@@ -114,32 +116,35 @@ class TampuraPolicy(Policy):
             self.belief_map[ab].append(belief)
             n = 0
 
-            while n < self.config["num_samples"]:
-                # Set up dynamics and reward based on symbolic effects
-                self.F, self.R, self.belief_map, plan_success = policy_search(
-                    belief,
-                    self.problem_spec,
-                    self.F,
-                    self.R,
-                    self.belief_map,
-                    store,
-                    self.config,
-                    save_dir=os.path.join(self.config["save_dir"], f"pddl_t={self.t}_s={n}"),
-                )
-                if not plan_success:
-                    break
-
-                if self.config["vis_graph"]:
-                    save_file = os.path.join(
-                        self.config["save_dir"], f"logs/transition_function_t={self.t}_s={n}.png"
+            logging.info("[TampuraPolicy] Outcome Sampling")
+            with tqdm(total=self.config["num_samples"]) as pbar:
+                while n < self.config["num_samples"]:
+                    # Set up dynamics and reward based on symbolic effects
+                    self.F, self.R, self.belief_map, plan_success = policy_search(
+                        belief,
+                        self.problem_spec,
+                        self.F,
+                        self.R,
+                        self.belief_map,
+                        store,
+                        self.config,
+                        save_dir=os.path.join(self.config["save_dir"], f"pddl_t={self.t}_s={n}"),
                     )
-                    self.F.visualize(self.R, save_file=save_file)
+                    if not plan_success:
+                        break
 
-                n += self.config["batch_size"]
+                    if self.config["vis_graph"]:
+                        save_file = os.path.join(
+                            self.config["save_dir"], f"logs/transition_function_t={self.t}_s={n}.png"
+                        )
+                        self.F.visualize(self.R, save_file=save_file)
 
-            logging.debug("Current abstract belief: " + str(ab))
+                    n += self.config["batch_size"]
+                    pbar.update(self.config["batch_size"])
+
             self.problem_spec.print_F(self.F)
 
+        logging.info("[TampuraPolicy] MDP Solving")
         if len(self.F.effects) == 0:
             selected_action = Action("no-op")
         else:

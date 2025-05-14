@@ -250,7 +250,7 @@ def progressive_widening(
 
     if len(continuous_args) > 0:
         if k * (store.get_sample_count(d_action) ** alpha) >= store.get_branching_factor(d_action):
-            logging.info(
+            logging.debug(
                 "Progressive widening on action {}, {}>{}".format(
                     d_action,
                     k * (store.get_sample_count(d_action) ** alpha),
@@ -296,8 +296,6 @@ def policy_search(
     (domain_file, problem_file) = spec.save_pddl(
         a_b0, default_cost=default_cost, folder=save_dir, store=store
     )
-
-    # _ = spec.save_ppddl(a_b0, cost_modifiers=cost_modifiers, folder=save_dir, store=store)
 
     output_sas_file = symk_translate(domain_file, problem_file)
 

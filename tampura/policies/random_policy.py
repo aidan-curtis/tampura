@@ -22,7 +22,6 @@ class RandomPolicy(Policy):
             self.sampled = True
 
         all_actions = self.problem_spec.applicable_actions(a_b, store)
-        print("All applicable actions: " + str(all_actions))
 
         if len(all_actions) > 0:
             return random.choice(all_actions), {}, store
