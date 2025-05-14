@@ -55,7 +55,7 @@ def symk_translate(domain_file: str, problem_file: str) -> List[List[Action]]:
 def symk_search(sas_file: str, config: Dict[str, Any]) -> List[List[Action]]:
     domain_dir = os.path.dirname(sas_file)
     script_dir = os.path.dirname(os.path.abspath(__file__))
-    downward = os.path.join(script_dir, "../../third_party/symk/fast-downward.py")
+    downward = os.path.join(script_dir, "../third_party/symk/fast-downward.py")
     search_command = [
         "python",
         downward,
