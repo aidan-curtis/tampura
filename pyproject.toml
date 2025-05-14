@@ -30,7 +30,7 @@ dependencies = [
 include-package-data = true
 
 [tool.setuptools.packages.find]
-include = ["tampura"]
+include = ["tampura*"]
 exclude = ["figs", "notebooks", "third_party"]
 
 [tool.black]
