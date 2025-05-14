@@ -33,7 +33,7 @@ def symk_translate(domain_file: str, problem_file: str) -> List[List[Action]]:
     # Extract the directory of the domain file
     domain_dir = os.path.dirname(domain_file)
     script_dir = os.path.dirname(os.path.abspath(__file__))
-    downward = os.path.join(script_dir, "../../third_party/symk/fast-downward.py")
+    downward = os.path.join(script_dir, "../third_party/symk/fast-downward.py")
     sas_file = os.path.join(domain_dir, "output.sas")
     translate_command = [
         "python",

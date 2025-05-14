@@ -1,10 +1,10 @@
 #!/bin/bash
 
 # Exclude files in third_party folder for Black
-python -m black . --exclude third_party/
+python -m black . --exclude tampura/third_party/
 
 # Exclude files in third_party folder for isort
-isort . --skip third_party
+isort . --skip tampura/third_party
 
 # Exclude files in third_party folder for docformatter
-docformatter -i -r . --exclude venv --exclude third_party
+docformatter -i -r . --exclude venv --exclude tampura/third_party

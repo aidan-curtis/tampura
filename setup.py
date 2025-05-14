@@ -10,7 +10,7 @@ class CustomBuildPy(_build_py):
         super().run()
 
         # Now run your custom script
-        symk_dir = os.path.join(os.path.dirname(__file__), "third_party", "symk")
+        symk_dir = os.path.join(os.path.dirname(__file__), "tampura/third_party", "symk")
         subprocess.check_call(["python", "build.py"], cwd=symk_dir)
 
 
